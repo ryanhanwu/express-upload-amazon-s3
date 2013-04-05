@@ -27,7 +27,7 @@ s3.client.putObject({
 }, this);
 ```
 
-##### Start server
+##### 3.Start server
 	node app.js
 	
 Now check [http://localhost:3000](http://localhost:3000)
