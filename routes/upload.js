@@ -20,10 +20,8 @@
              fs.readFile(file.path, this);
          }, function(err, data) { // Upload file to S3
              s3.client.putObject({
-                 Bucket: 'ereo-tokyo',
-                 //Bucket Name
-                 Key: file.name,
-                 //File name
+                 Bucket: 'XXXXX Bucket Name', //Bucket Name
+                 Key: file.name, //File Name
                  Body: data
              }, this);
          }, function(err, data) { //Upload Callback
