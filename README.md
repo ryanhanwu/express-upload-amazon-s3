@@ -10,21 +10,28 @@ Sample project for demonstrating how to upload file from web through express to 
     
 
 ## Setup
-##### 1.Update Amazon Crenditials
+##### 1.Download Project
+```bash
+git clone git@github.com:flyworld/express-upload-amazon-s3.git
+```
+##### 2.Install required packages
+```bash
+npm install
+```
+
+##### 3.Update Amazon Crenditials
 
 * Edit ```/config.json```
 
 ```json
-	{
-    	"accessKeyId": "XXXXXXXXXXXXXXXXXXX",
-	    "secretAccessKey": 	"XXXXXXXXXXXXXXXXXXXXXXXXX"
-	}
+{
+    "accessKeyId": "XXXXXXXXXXXXXXXXXXX",
+    "secretAccessKey": 	"XXXXXXXXXXXXXXXXXXXXXXXXX"
+}
 ```
-* Document From Amazon
-  * [Security Credentials](https://portal.aws.amazon.com/gp/aws/securityCredentials)	
 
-##### 2.Update Bucket Name 
-* Edit ```/routes/upload.js```
+##### 4.Update Bucket Name 
+* Edit ```/routes/upload.js```, update the **Bucket Name** to yours
 
 ```javascript
 s3.client.putObject({	 
@@ -34,10 +41,15 @@ s3.client.putObject({
 }, this);
 ```
 
-##### 3.Start server
+##### 5.Start server
 	node app.js
 	
 Now check [http://localhost:3000](http://localhost:3000)
+
+## Reference
+* Document From Amazon
+  * [Security Credentials](https://portal.aws.amazon.com/gp/aws/securityCredentials)
+  * [AWS JavaScript SDK - S3 Client](http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3/Client.html#putObject-property)
 
 ## License
 Released under the [MIT license](http://www.opensource.org/licenses/MIT).
