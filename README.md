@@ -31,7 +31,7 @@ npm install
 ```
 
 ##### 4.Update Bucket Name 
-* Edit ```/routes/upload.js```, update the **Bucket Name** to yours
+* Edit ```/routes/upload.js```, update the value of **Bucket** to your bucket name.
 
 ```javascript
 s3.client.putObject({	 
