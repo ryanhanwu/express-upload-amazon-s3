@@ -1,5 +1,26 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    h1 Express upload to Amazon S3
+
+    p Test page for <code>express-upload-amazon-s3</code>
+
+    h2 Upload Single File
+    form(method="post", name="form1", action="/upload", enctype="multipart/form-data")
+      fieldset
+        legend Upload single File
+        input(type="file", name="file")
+      div.actions
+        button.btn.primary(type="submit") Upload
+        button.btn.cancel(type="button") Cancel
+
+    h2 Upload Multiple Files
+    form(method="post", name="form2", action="/upload", enctype="multipart/form-data")
+      fieldset
+        legend Upload a Few Files
+        input(type="file", name="file_1")
+        br
+        input(type="file", name="file_2")
+      div.actions
+        button.btn.primary(type="submit") Upload
+        button.btn.cancel(type="button") Cancel

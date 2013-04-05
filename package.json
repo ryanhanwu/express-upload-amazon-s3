@@ -1,6 +1,6 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
+  "name": "express-upload-amazon-s3",
+  "version": "0.0.3",
   "private": true,
   "scripts": {
     "start": "node app.js"
@@ -8,7 +8,8 @@
   "dependencies": {
     "express": "3.1.1",
     "jade": "*",
-    "underscore" : "*",
-    "aws-sdk" : "*"
+    "flow": "*",
+    "underscore": "*",
+    "aws-sdk": "*"
   }
 }
