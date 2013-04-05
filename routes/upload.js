@@ -21,7 +21,7 @@
          }, function(err, data) { // Upload file to S3
              s3.client.putObject({
                  Bucket: 'XXXXX Bucket Name', //Bucket Name
-                 Key: file.name, //File Name
+                 Key: file.name, //Upload File Name, Default the original name
                  Body: data
              }, this);
          }, function(err, data) { //Upload Callback
