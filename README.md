@@ -10,18 +10,25 @@ Sample project for demonstrating how to upload file from web through express to 
     
 
 ## Setup
-##### 1.Update config.json
+##### 1.Update Amazon Crenditials
+
+* Edit ```/config.json```
+
+```json
 	{
     	"accessKeyId": "XXXXXXXXXXXXXXXXXXX",
 	    "secretAccessKey": 	"XXXXXXXXXXXXXXXXXXXXXXXXX"
 	}
-	
+```
+* Document From Amazon
+  * [Security Credentials](https://portal.aws.amazon.com/gp/aws/securityCredentials)	
+
 ##### 2.Update Bucket Name 
 * Edit ```/routes/upload.js```
 
 ```javascript
 s3.client.putObject({	 
-    Bucket: 'XXXXX Bucket Name', //Bucket Name
+    Bucket: 'XXXXX Bucket Name', //S3 Bucket Name
     Key: file.name, //Upload File Name, Default the original name
     Body: data
 }, this);
