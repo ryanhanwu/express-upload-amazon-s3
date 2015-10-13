@@ -42,10 +42,44 @@ s3.putObject({
 
 Now check [http://localhost:3000](http://localhost:3000)
 
+
+## Error Handling
+
+### [S3] PermanentRedirect
+
+```
+PermanentRedirect: The bucket you are attempting to access must be addressed using the specified endpoint. Please send all future requests to this endpoint.
+```
+
+**Solution**: The region settings might be wrong, please check your ```config.json``` and make sure the ```region``` is correct
+
+### [S3] AccessDenied 403 
+
+```
+[AccessDenied: Access Denied]
+```
+
+**Solution**: Try update your S3 Bucket's ```CORS Configuration``` to following
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+   <CORSRule>
+        <AllowedOrigin>*</AllowedOrigin>
+        <AllowedMethod>GET</AllowedMethod>
+        <AllowedMethod>POST</AllowedMethod>
+        <AllowedMethod>PUT</AllowedMethod>
+        <AllowedHeader>*</AllowedHeader>
+    </CORSRule>
+</CORSConfiguration>
+```
+
 ## Reference
+
 * Document From Amazon
   * [Security Credentials](https://console.aws.amazon.com/iam/home?#security_credential)
   * [AWS JavaScript SDK - S3 Client](http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property)
 
 ## License
-MIT: [http://ryanwu.mit-license.org](http://ryanwu.mit-license.org).
+
+* MIT: [http://ryanwu.mit-license.org](http://ryanwu.mit-license.org).
