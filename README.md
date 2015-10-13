@@ -1,18 +1,12 @@
 Express-upload-amazon-s3
 ========================
 
-Sample project for demonstrating how to upload file from web through express to Amazon S3 (Simple Storage Service) by aws-sdk
-
-
-## Demo
-
-	coming soon…
-    
+Sample project for demonstrating how to upload file from web through express to Amazon S3 (Simple Storage Service) by [aws-sdk](https://github.com/aws/aws-sdk-js)
 
 ## Setup
 ##### 1.Download Project
 ```bash
-git clone git@github.com:flyworld/express-upload-amazon-s3.git
+git clone https://github.com/ryanhanwu/express-upload-amazon-s3.git
 ```
 ##### 2.Install required packages
 ```bash
@@ -26,30 +20,32 @@ npm install
 ```json
 {
     "accessKeyId": "XXXXXXXXXXXXXXXXXXX",
-    "secretAccessKey": 	"XXXXXXXXXXXXXXXXXXXXXXXXX"
+    "secretAccessKey": 	"XXXXXXXXXXXXXXXXXXXXXXXXX",
+    "region": "us-east-1"
 }
 ```
 
-##### 4.Update Bucket Name 
+##### 4.Update Bucket Name
+
 * Edit ```/routes/upload.js```, update the value of **Bucket** to your bucket name.
 
 ```javascript
-s3.client.putObject({	 
+s3.putObject({
     Bucket: 'XXXXX Bucket Name', //S3 Bucket Name
-    Key: file.name, //Upload File Name, Default the original name
+    Key: file.originalname, //Upload File Name, Default the original name
     Body: data
 }, this);
 ```
 
 ##### 5.Start server
 	node app.js
-	
+
 Now check [http://localhost:3000](http://localhost:3000)
 
 ## Reference
 * Document From Amazon
-  * [Security Credentials](https://portal.aws.amazon.com/gp/aws/securityCredentials)
-  * [AWS JavaScript SDK - S3 Client](http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3/Client.html#putObject-property)
+  * [Security Credentials](https://console.aws.amazon.com/iam/home?#security_credential)
+  * [AWS JavaScript SDK - S3 Client](http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property)
 
 ## License
-Released under the [MIT license](http://www.opensource.org/licenses/MIT).
+MIT: [http://ryanwu.mit-license.org](http://ryanwu.mit-license.org).
