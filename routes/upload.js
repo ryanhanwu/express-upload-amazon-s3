@@ -1,44 +1,45 @@
  var _ = require('underscore'),
-     AWS = require('aws-sdk'),
-     fs = require('fs'),
-     flow = require('flow');
- AWS.config.loadFromPath(__dirname + '/../config.json');
+ 	AWS = require('aws-sdk'),
+ 	fs = require('fs'),
+ 	path = require('path'),
+ 	flow = require('flow');
+
+ configPath = path.join(__dirname, '..', "config.json");
+
+ AWS.config.loadFromPath(configPath);
 
  exports.s3 = function(req, res) {
+ 	var s3 = new AWS.S3(),
+ 		file = req.file,
+ 		result = {
+ 			error: 0,
+ 			uploaded: []
+ 		};
 
-     var s3 = new AWS.S3(),
-         files = _.toArray(req.files),
-         uploadNumber = files.length,
-         result = {
-            error : 0,
-            uploaded : []
-         };
-
-     _.each(files, function(file) {
-         flow.exec(
-         function() { // Read temp File
-             fs.readFile(file.path, this);
-         }, function(err, data) { // Upload file to S3
-             s3.client.putObject({
-                 Bucket: 'XXXXX Bucket Name', //Bucket Name
-                 Key: file.name, //Upload File Name, Default the original name
-                 Body: data
-             }, this);
-         }, function(err, data) { //Upload Callback
-             if(err) {
-                 console.dir('Error : ' + err);
-                 result.error++;
-             }
-             result.uploaded.push(data.ETag);
-             this();
-         }, function() {
-             if(--uploadNumber === 0) {
-                 res.render("result", {
-                     title: "Upload Result",
-                     message: result.error > 0 ? "Something is wroing, Check the log" : "Success!!",
-                     entitiyIDs : result.uploaded
-                 });
-             }
-         });
-     });
+ 	flow.exec(
+ 		function() { // Read temp File
+ 			fs.readFile(file.path, this);
+ 		},
+ 		function(err, data) { // Upload file to S3
+ 			s3.putObject({
+ 				Bucket: 'XXXXX Bucket Name', //Bucket Name
+ 				Key: file.originalname, //Upload File Name, Default the original name
+ 				Body: data
+ 			}, this);
+ 		},
+ 		function(err, data) { //Upload Callback
+ 			if (err) {
+ 				console.error('Error : ' + err);
+ 				result.error++;
+ 			}
+ 			result.uploaded.push(data.ETag);
+ 			this();
+ 		},
+ 		function() {
+ 			res.render("result", {
+ 				title: "Upload Result",
+ 				message: result.error > 0 ? "Something is wroing, Check your server log" : "Success!!",
+ 				entitiyIDs: result.uploaded
+ 			});
+ 		});
  };

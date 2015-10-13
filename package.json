@@ -12,6 +12,7 @@
 		"express": "latest",
 		"jade": "*",
 		"flow": "*",
+		"multer": "*",
 		"underscore": "*",
 		"aws-sdk": "*"
 	},

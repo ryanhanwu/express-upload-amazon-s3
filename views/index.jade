@@ -9,18 +9,7 @@ block content
     form(method="post", name="form1", action="/upload", enctype="multipart/form-data")
       fieldset
         legend Upload single File
-        input(type="file", name="file")
-      div.actions
-        button.btn.primary(type="submit") Upload
-        button.btn.cancel(type="button") Cancel
-
-    h2 Upload Multiple Files
-    form(method="post", name="form2", action="/upload", enctype="multipart/form-data")
-      fieldset
-        legend Upload a Few Files
-        input(type="file", name="file_1")
-        br
-        input(type="file", name="file_2")
+        input(type="file", name="singleFile")
       div.actions
         button.btn.primary(type="submit") Upload
         button.btn.cancel(type="button") Cancel
